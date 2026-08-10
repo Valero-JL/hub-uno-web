@@ -49,10 +49,10 @@ node tests/unit/run-tests.mjs
 
 ## Imágenes de cartas
 
-Las caras viven en `assets/cards/` (por defecto SVG de relleno jugables).
+Las caras viven en `assets/cards/` (PNG del arte final).
 
-- Convención: `red-0.svg`, `red-reverse.svg`, `wild.svg`, `wild-draw4.svg`, `back.svg`, etc.
-- Para usar tus propias imágenes (PNG/WebP/SVG), sustitúyelas en esa carpeta y, si cambia la extensión, edita `CARD_IMAGE_EXT` en `js/constants.js`.
+- Convención: `red-0.png`, `red-reverse.png`, `wild.png`, `wild-draw4.png`, `back.png`, etc.
+- Si cambia la extensión, edita `CARD_IMAGE_EXT` en `js/constants.js`.
 - Si falta un archivo, la UI muestra un **fallback** CSS y el juego sigue.
 
 ## Estructura

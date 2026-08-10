@@ -24,7 +24,7 @@ export const COLOR_HEX = {
 };
 
 /** Extensión de las imágenes de cartas (cambiar aquí si el usuario entrega .webp/.svg). */
-export const CARD_IMAGE_EXT = 'svg';
+export const CARD_IMAGE_EXT = 'png';
 
 /** Prefijo relativo de imágenes de cartas (GitHub Pages). */
 export const CARD_IMAGE_BASE = './assets/cards/';
