@@ -427,6 +427,10 @@ input:focus-visible,
   animation: pulse-badge 1s ease infinite;
 }
 
+.badge--penalty[hidden] {
+  display: none !important;
+}
+
 @keyframes pulse-badge {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.06); }

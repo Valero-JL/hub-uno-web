@@ -77,9 +77,14 @@ export function createRenderer(els) {
 
     if (state.pendingDraw > 0) {
       els.penaltyBadge.hidden = false;
+      els.penaltyBadge.removeAttribute('hidden');
       els.penaltyBadge.textContent = `+${state.pendingDraw}`;
+      els.penaltyBadge.style.display = '';
     } else {
       els.penaltyBadge.hidden = true;
+      els.penaltyBadge.setAttribute('hidden', '');
+      els.penaltyBadge.style.display = 'none';
+      els.penaltyBadge.textContent = '';
     }
 
     const current = state.players[state.currentPlayerIndex];
