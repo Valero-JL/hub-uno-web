@@ -1,44 +1,53 @@
-/* HUB-UNO — Layout, temas y tokens */
-
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@400;600;700&display=swap');
+/* HUB-UNO — Layout y tokens (Manual de marca GTAHUB) */
 
 :root {
+  /* Colores de juego (cartas) */
   --crimson: #E63946;
-  --amber: #F4A62A;
+  --amber: #ffcc00;
   --jade: #2A9D8F;
   --cobalt: #2F6FED;
-  --ink: #152033;
-  --paper: #F3F0E8;
-  --paper-2: #E7E2D6;
-  --felt: #1A3A36;
-  --felt-deep: #0F2421;
-  --surface: rgba(243, 240, 232, 0.92);
-  --surface-strong: #F7F4EF;
-  --text: #152033;
-  --muted: #5A6475;
-  --border: rgba(21, 32, 51, 0.12);
-  --shadow: 0 10px 30px rgba(15, 36, 33, 0.25);
+
+  /* Marca GTAHUB */
+  --brand-black: #101010;
+  --brand-grey: #181818;
+  --brand-yellow: #ffcc00;
+  --brand-pink: #fe3377;
+  --brand-white: #ffffff;
+  --brand-blue: #2F6FED;
+  --brand-violet: #7B2CFF;
+
+  --ink: #ffffff;
+  --paper: #101010;
+  --paper-2: #181818;
+  --felt: #141414;
+  --felt-deep: #0a0a0a;
+  --surface: rgba(24, 24, 24, 0.96);
+  --surface-strong: #181818;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.62);
+  --border: rgba(255, 255, 255, 0.12);
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
   --radius: 16px;
-  --font-display: 'Outfit', 'Sora', sans-serif;
-  --font-body: 'Sora', 'Outfit', sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
   --card-w: clamp(64px, 12vw, 110px);
   --card-h: clamp(90px, 16.8vw, 154px);
-  --focus: 0 0 0 3px rgba(47, 111, 237, 0.55);
+  --focus: 0 0 0 3px rgba(254, 51, 119, 0.55);
 }
 
-html.theme-dark,
-[data-theme='dark'] {
-  --ink: #E8EEF8;
-  --paper: #121925;
-  --paper-2: #1A2435;
-  --felt: #0F2A28;
-  --felt-deep: #081614;
-  --surface: rgba(22, 32, 48, 0.94);
-  --surface-strong: #1C273A;
-  --text: #E8EEF8;
-  --muted: #A4B0C2;
-  --border: rgba(232, 238, 248, 0.12);
-  --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+/* El manual es dark-first; el modo claro solo aclara superficies */
+html:not(.theme-dark):not([data-theme='dark']) {
+  --ink: #101010;
+  --paper: #f4f4f4;
+  --paper-2: #e8e8e8;
+  --felt: #1a1a1a;
+  --felt-deep: #101010;
+  --surface: rgba(255, 255, 255, 0.94);
+  --surface-strong: #ffffff;
+  --text: #101010;
+  --muted: rgba(16, 16, 16, 0.62);
+  --border: rgba(16, 16, 16, 0.12);
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
 }
 
 *,
@@ -52,10 +61,14 @@ html, body {
   min-height: 100%;
   font-family: var(--font-body);
   color: var(--text);
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(47, 111, 237, 0.18), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(244, 166, 42, 0.16), transparent 50%),
-    linear-gradient(160deg, var(--paper), var(--paper-2));
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(900px 480px at 100% 100%, rgba(254, 51, 119, 0.16), transparent 55%),
+    radial-gradient(700px 420px at 0% 0%, rgba(47, 111, 237, 0.12), transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(180deg, var(--paper), var(--paper-2));
+  background-size: auto, auto, 28px 28px, 28px 28px, auto;
 }
 
 body {
@@ -78,7 +91,7 @@ button {
   min-height: 44px;
   min-width: 44px;
   padding: 0.65rem 1rem;
-  background: var(--cobalt);
+  background: var(--brand-pink);
   color: #fff;
   font-weight: 700;
   transition: transform 0.15s ease, filter 0.15s ease, background 0.15s ease;
@@ -111,12 +124,12 @@ input:focus-visible,
 }
 
 .btn-amber {
-  background: var(--amber);
-  color: #1A1200;
+  background: var(--brand-yellow);
+  color: #101010;
 }
 
 .btn-danger {
-  background: var(--crimson);
+  background: var(--brand-pink);
 }
 
 .screen {
@@ -141,7 +154,7 @@ input:focus-visible,
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: calc(var(--radius) + 4px);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), 0 0 0 1px rgba(254, 51, 119, 0.08);
   padding: 1.5rem 1.25rem 1.25rem;
   backdrop-filter: blur(8px);
 }
@@ -150,33 +163,49 @@ input:focus-visible,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   margin-bottom: 1.25rem;
   text-align: center;
 }
 
 .brand__logo {
-  width: 72px;
-  height: 72px;
+  width: min(280px, 78%);
+  height: auto;
+  margin-bottom: 0.35rem;
+  filter: drop-shadow(0 0 18px rgba(47, 111, 237, 0.35));
+}
+
+.brand__eyebrow {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  background: var(--brand-pink);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 0 16px rgba(254, 51, 119, 0.45);
 }
 
 .brand__title {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 8vw, 3.2rem);
+  font-size: clamp(2rem, 7vw, 2.8rem);
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   margin: 0;
   line-height: 1;
-  background: linear-gradient(120deg, var(--cobalt), var(--jade) 55%, var(--amber));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--brand-white);
+  text-transform: uppercase;
 }
 
 .brand__tag {
   margin: 0;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 
 .form-grid {
@@ -270,9 +299,10 @@ input:focus-visible,
 /* —— Game —— */
 #screen-game {
   background:
-    radial-gradient(800px 400px at 50% 20%, rgba(42, 157, 143, 0.22), transparent 60%),
-    linear-gradient(180deg, var(--felt), var(--felt-deep));
-  color: #F7F4EF;
+    radial-gradient(700px 360px at 80% 90%, rgba(254, 51, 119, 0.14), transparent 60%),
+    radial-gradient(700px 360px at 20% 10%, rgba(47, 111, 237, 0.12), transparent 55%),
+    linear-gradient(180deg, #141414, #101010 55%, #0a0a0a);
+  color: #ffffff;
 }
 
 .game-top {
@@ -284,10 +314,23 @@ input:focus-visible,
 }
 
 .game-top__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
   font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: 0.06em;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
+}
+
+.game-top__logo {
+  height: 28px;
+  width: auto;
+}
+
+.game-top__product {
+  color: var(--brand-yellow);
+  letter-spacing: 0.08em;
 }
 
 .game-top__actions {
@@ -319,12 +362,12 @@ input:focus-visible,
   min-height: clamp(280px, 48dvh, 520px);
   border-radius: 50% / 42%;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 48%, rgba(42, 157, 143, 0.28), transparent 70%),
-    radial-gradient(ellipse 90% 75% at 50% 50%, #1a4a44 0%, #0f2a28 62%, #0a1c1a 100%);
+    radial-gradient(ellipse 70% 60% at 50% 48%, rgba(47, 111, 237, 0.16), transparent 70%),
+    radial-gradient(ellipse 90% 75% at 50% 50%, #1c1c1c 0%, #141414 55%, #0d0d0d 100%);
   box-shadow:
-    inset 0 0 0 3px rgba(244, 166, 42, 0.22),
-    inset 0 0 40px rgba(0, 0, 0, 0.35),
-    0 12px 28px rgba(0, 0, 0, 0.35);
+    inset 0 0 0 3px rgba(255, 204, 0, 0.22),
+    inset 0 0 40px rgba(0, 0, 0, 0.45),
+    0 12px 28px rgba(0, 0, 0, 0.45);
   overflow: visible;
 }
 
@@ -347,11 +390,11 @@ input:focus-visible,
 
 .seat.is-active {
   z-index: 3;
-  filter: drop-shadow(0 0 8px rgba(244, 166, 42, 0.65));
+  filter: drop-shadow(0 0 8px rgba(254, 51, 119, 0.65));
 }
 
 .seat.is-active .seat__card {
-  box-shadow: 0 0 0 2px var(--amber), 0 6px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 2px var(--brand-pink), 0 6px 14px rgba(0, 0, 0, 0.4);
   transform: translateY(-3px) scale(1.05);
 }
 
@@ -392,8 +435,8 @@ input:focus-visible,
   height: 22px;
   padding: 0 5px;
   border-radius: 999px;
-  background: var(--amber);
-  color: #1a1200;
+  background: var(--brand-yellow);
+  color: #101010;
   font-size: 0.72rem;
   font-weight: 800;
   display: grid;
@@ -519,7 +562,7 @@ input:focus-visible,
 }
 
 .human-area.is-active .hand-wrap {
-  box-shadow: 0 0 0 2px rgba(244, 166, 42, 0.45);
+  box-shadow: 0 0 0 2px rgba(254, 51, 119, 0.55);
 }
 
 .human-area .hand-wrap,
@@ -560,8 +603,8 @@ input:focus-visible,
 }
 
 .controls .btn-primary {
-  background: var(--amber);
-  color: #1A1200;
+  background: var(--brand-yellow);
+  color: #101010;
   border: none;
 }
 

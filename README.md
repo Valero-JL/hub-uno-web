@@ -1,8 +1,8 @@
-# HUB-UNO
+# HUB-UNO · GTAHUB
 
-Juego de cartas por turnos (descarte por color y número) con identidad **100% original**. Un jugador humano contra 1–9 bots. Todo ocurre en el navegador: sin backend, sin cuentas y sin multijugador online.
+Juego de cartas por turnos (descarte por color y número) con identidad visual de **GTAHUB**. Un jugador humano contra 1–9 bots. Todo ocurre en el navegador: sin backend, sin cuentas y sin multijugador online.
 
-> Proyecto original e independiente. **No afiliado ni respaldado** por ninguna marca comercial de juegos de cartas.
+> Proyecto con marca **GTAHUB**. El juego HUB-UNO es original e independiente de otras marcas comerciales de cartas.
 
 ## Cómo jugar
 

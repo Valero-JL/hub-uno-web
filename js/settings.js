@@ -67,7 +67,8 @@ export function applyTheme(darkMode) {
   const root = document.documentElement;
   let dark = darkMode;
   if (dark === null || dark === undefined) {
-    dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Marca GTAHUB: por defecto oscuro
+    dark = true;
   }
   root.dataset.theme = dark ? 'dark' : 'light';
   root.classList.toggle('theme-dark', !!dark);

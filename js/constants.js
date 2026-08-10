@@ -18,7 +18,7 @@ export const COLOR_LABELS = {
 
 export const COLOR_HEX = {
   red: '#E63946',
-  yellow: '#F4A62A',
+  yellow: '#ffcc00',
   green: '#2A9D8F',
   blue: '#2F6FED',
 };
@@ -127,7 +127,7 @@ export const DEFAULT_CONFIG = {
   },
   sound: false,
   animations: true,
-  darkMode: null, // null = seguir sistema
+  darkMode: true, // manual GTAHUB: dark-first
   firstPlayer: 'human', // 'human' | 'random'
 };
 
