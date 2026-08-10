@@ -175,6 +175,12 @@ input:focus-visible,
   filter: drop-shadow(0 0 18px rgba(47, 111, 237, 0.35));
 }
 
+.brand__logo--mark {
+  width: clamp(120px, 34vw, 168px);
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(254, 51, 119, 0.28));
+}
+
 .brand__eyebrow {
   margin: 0;
   display: inline-flex;
@@ -324,7 +330,7 @@ input:focus-visible,
 }
 
 .game-top__logo {
-  height: 28px;
+  height: 32px;
   width: auto;
 }
 
