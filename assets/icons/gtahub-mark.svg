@@ -1,9 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GTAHUB">
-  <rect width="64" height="64" rx="12" fill="#101010"/>
-  <g transform="translate(8,6) scale(0.24)" fill="#FFFFFF">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-label="GTAHUB">
+  <g fill="#FFFFFF">
+    <!-- Isometric cube monogram approximating G (top) H (left) B (right) U (bottom) -->
+    <!-- Left face H -->
     <polygon points="28,70 28,150 48,162 48,122 78,140 78,162 98,174 98,94 78,82 78,118 48,100 48,82"/>
+    <!-- Right face B -->
     <path d="M102 94 L102 174 L122 162 L122 148 L148 134 L148 150 L168 138 L168 70 L122 94 L122 108 L148 94 L148 108 L122 122 L122 82 Z"/>
+    <!-- Top face G-like -->
     <polygon points="100,18 170,58 170,78 140,94 140,78 100,54 60,78 60,94 30,78 30,58"/>
+    <polygon points="100,54 140,78 140,98 118,110 118,90 100,78 82,90 82,110 60,98 60,78"/>
+    <!-- Bottom U connector -->
     <path d="M48 150 L48 170 L100 200 L152 170 L152 150 L132 162 L132 176 L100 194 L68 176 L68 162 Z"/>
   </g>
 </svg>
