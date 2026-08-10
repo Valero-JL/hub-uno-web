@@ -1,0 +1,98 @@
+/* HUB-UNO — Responsive breakpoints */
+
+/* Mobile default already in styles.css */
+
+@media (max-width: 599px) {
+  .setup-shell {
+    padding: 1.1rem 0.9rem;
+  }
+
+  .bots-rail {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.25rem;
+  }
+
+  .bot-chip {
+    flex: 0 0 auto;
+  }
+
+  .hand .card {
+    margin-left: calc(var(--card-w) * -0.38);
+  }
+
+  .setup-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  :root {
+    --card-w: clamp(64px, 9vw, 92px);
+    --card-h: clamp(96px, 13.5vw, 138px);
+  }
+
+  .table {
+    padding: 0 1rem 1rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  :root {
+    --card-w: 92px;
+    --card-h: 138px;
+  }
+
+  #screen-game {
+    display: none;
+  }
+
+  #screen-game.is-active {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  .table {
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .bots-rail {
+    position: relative;
+    justify-content: space-around;
+    padding: 0.5rem 2rem;
+  }
+
+  .hand .card {
+    margin-left: calc(var(--card-w) * -0.18);
+  }
+
+  .center-stage {
+    min-height: 280px;
+  }
+}
+
+/* Landscape phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --card-w: clamp(44px, 9vh, 70px);
+    --card-h: clamp(66px, 13.5vh, 105px);
+  }
+
+  .game-top {
+    padding: 0.35rem 0.6rem;
+  }
+
+  .brand__logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .history-toast {
+    display: none;
+  }
+}

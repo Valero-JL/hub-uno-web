@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="270" viewBox="0 0 180 270" role="img">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B2A4A"/>
+      <stop offset="100%" stop-color="#0E1628"/>
+    </linearGradient>
+    <pattern id="grid" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M12 0H0V12" fill="none" stroke="#2F6FED" stroke-opacity="0.25" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="2" y="2" width="176" height="266" rx="18" fill="url(#bg)" stroke="#F4A62A" stroke-width="4"/>
+  <rect x="14" y="14" width="152" height="242" rx="12" fill="url(#grid)"/>
+  <polygon points="90,70 120,135 90,200 60,135" fill="none" stroke="#F4A62A" stroke-width="4"/>
+  <text x="90" y="145" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#F7F4EF">HUB</text>
+  <text x="90" y="168" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#F4A62A">UNO</text>
+</svg>

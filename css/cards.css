@@ -1,0 +1,156 @@
+/* HUB-UNO — Estilos de cartas y estados visuales */
+
+.card {
+  --card-color: #888;
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-h);
+  flex: 0 0 auto;
+  border: none;
+  padding: 0;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+  transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  scroll-snap-align: center;
+  overflow: hidden;
+}
+
+.card:focus-visible {
+  box-shadow: var(--focus), 0 4px 10px rgba(0, 0, 0, 0.28);
+}
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  pointer-events: none;
+  background: #F7F4EF;
+}
+
+.card__fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--card-color) 85%, #000), var(--card-color));
+  color: #F7F4EF;
+  border: 3px solid #F7F4EF;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-align: center;
+  padding: 0.25rem;
+  line-height: 1.1;
+}
+
+.card.is-fallback .card__img {
+  display: none;
+}
+
+.card.is-fallback .card__fallback {
+  display: flex;
+}
+
+.card__fallback-value {
+  font-size: clamp(1rem, 3vw, 1.6rem);
+}
+
+.card__fallback-sub {
+  font-size: 0.65rem;
+  opacity: 0.9;
+  margin-top: 0.2rem;
+}
+
+.card__badge {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 0.1rem 0.25rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  pointer-events: none;
+}
+
+/* Hand card overlap */
+.hand .card {
+  margin-left: calc(var(--card-w) * -0.28);
+}
+
+.hand .card:first-child {
+  margin-left: 0;
+}
+
+.hand .card.is-playable {
+  transform: translateY(-10px);
+  box-shadow: 0 0 0 2px var(--amber), 0 8px 16px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.hand .card.is-playable:hover,
+.hand .card.is-playable:focus-visible {
+  transform: translateY(-16px) scale(1.04);
+  z-index: 3;
+}
+
+.hand .card:not(.is-playable) {
+  opacity: 0.48;
+  filter: grayscale(0.25);
+  cursor: not-allowed;
+}
+
+.hand .card.is-selected {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--cobalt);
+  transform: translateY(-18px);
+  z-index: 4;
+}
+
+.card--pile {
+  width: var(--card-w);
+  height: var(--card-h);
+  cursor: default;
+}
+
+.card--draw {
+  cursor: pointer;
+}
+
+.card--draw:hover:not(:disabled) {
+  transform: translateY(-4px);
+}
+
+.card--back .card__fallback {
+  background: linear-gradient(160deg, #1B2A4A, #0E1628);
+}
+
+/* Animations */
+body.animations-on .card.is-enter {
+  animation: card-in 0.28s ease;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+body.animations-on .hand .card.is-playable {
+  animation: playable-bob 1.8s ease-in-out infinite;
+}
+
+@keyframes playable-bob {
+  0%, 100% { transform: translateY(-10px); }
+  50% { transform: translateY(-14px); }
+}
