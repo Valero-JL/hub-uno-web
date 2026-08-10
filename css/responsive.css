@@ -1,21 +1,20 @@
 /* HUB-UNO — Responsive breakpoints */
 
-/* Mobile default already in styles.css */
-
 @media (max-width: 599px) {
   .setup-shell {
     padding: 1.1rem 0.9rem;
   }
 
-  .bots-rail {
-    justify-content: flex-start;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 0.25rem;
+  .round-table {
+    --seat-card-w: clamp(36px, 11vw, 52px);
+    --seat-card-h: clamp(50px, 15.4vw, 73px);
+    min-height: clamp(240px, 42dvh, 360px);
+    border-radius: 48% / 40%;
   }
 
-  .bot-chip {
-    flex: 0 0 auto;
+  .seat__name {
+    max-width: 4.2rem;
+    font-size: 0.68rem;
   }
 
   .hand .card {
@@ -25,23 +24,39 @@
   .setup-actions {
     grid-template-columns: 1fr;
   }
+
+  .center-stage .status-row {
+    gap: 0.3rem;
+  }
+
+  .center-stage .badge {
+    font-size: 0.72rem;
+    min-height: 30px;
+    padding: 0.25rem 0.5rem;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 1024px) {
   :root {
-    --card-w: clamp(64px, 9vw, 92px);
-    --card-h: clamp(96px, 13.5vw, 138px);
+    --card-w: clamp(76px, 10vw, 118px);
+    --card-h: clamp(106px, 14vw, 165px);
   }
 
   .table {
     padding: 0 1rem 1rem;
   }
+
+  .round-table {
+    --seat-card-w: clamp(48px, 8vw, 70px);
+    --seat-card-h: clamp(67px, 11.2vw, 98px);
+    min-height: clamp(320px, 50dvh, 480px);
+  }
 }
 
 @media (min-width: 1025px) {
   :root {
-    --card-w: 92px;
-    --card-h: 138px;
+    --card-w: 118px;
+    --card-h: 165px;
   }
 
   #screen-game {
@@ -61,26 +76,28 @@
     width: 100%;
   }
 
-  .bots-rail {
-    position: relative;
-    justify-content: space-around;
-    padding: 0.5rem 2rem;
+  .round-table {
+    --seat-card-w: 68px;
+    --seat-card-h: 95px;
+    min-height: 480px;
   }
 
   .hand .card {
     margin-left: calc(var(--card-w) * -0.18);
-  }
-
-  .center-stage {
-    min-height: 280px;
   }
 }
 
 /* Landscape phones */
 @media (max-height: 500px) and (orientation: landscape) {
   :root {
-    --card-w: clamp(44px, 9vh, 70px);
-    --card-h: clamp(66px, 13.5vh, 105px);
+    --card-w: clamp(52px, 10vh, 84px);
+    --card-h: clamp(73px, 14vh, 118px);
+  }
+
+  .round-table {
+    --seat-card-w: clamp(32px, 8vh, 48px);
+    --seat-card-h: clamp(45px, 11vh, 67px);
+    min-height: clamp(180px, 58dvh, 280px);
   }
 
   .game-top {
@@ -93,6 +110,10 @@
   }
 
   .history-toast {
+    display: none;
+  }
+
+  .seat--human {
     display: none;
   }
 }

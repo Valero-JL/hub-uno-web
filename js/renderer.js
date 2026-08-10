@@ -24,7 +24,7 @@ export function createRenderer(els) {
     els.screenSetup.classList.remove('is-active');
     els.screenGame.classList.add('is-active');
 
-    renderBots(state);
+    renderSeats(state);
     renderPiles(state, ctx);
     renderStatus(state);
     renderHand(state, ctx);
@@ -33,23 +33,93 @@ export function createRenderer(els) {
     announce(state);
   }
 
-  function renderBots(state) {
-    const rail = els.botsRail;
-    rail.innerHTML = '';
-    state.players.forEach((p, i) => {
-      if (p.isHuman) return;
-      const chip = document.createElement('div');
-      chip.className = 'bot-chip' + (i === state.currentPlayerIndex ? ' is-active' : '');
-      chip.setAttribute('aria-label', `${p.name}, ${p.hand.length} cartas${i === state.currentPlayerIndex ? ', turno actual' : ''}`);
-      chip.innerHTML = `
-        <div class="bot-chip__avatar" aria-hidden="true">${p.name.slice(0, 1)}</div>
-        <div class="bot-chip__meta">
-          <span class="bot-chip__name">${escapeHtml(p.name)}</span>
-          <span class="bot-chip__count">${p.hand.length} cartas</span>
-        </div>
-      `;
-      rail.appendChild(chip);
+  /**
+   * Coloca a los rivales en arco de mesa redonda (el humano queda abajo).
+   * @param {number} index
+   * @param {number} total
+   * @returns {{ left: string, top: string }}
+   */
+  function seatCoords(index, total) {
+    if (total <= 0) return { left: '50%', top: '12%' };
+    // Arco superior: desde izquierda (-130°) hasta derecha (+130°), 0° = arriba
+    const spread = total === 1 ? 0 : 260;
+    const start = -spread / 2;
+    const step = total === 1 ? 0 : spread / (total - 1);
+    const angleDeg = start + index * step;
+    const rad = (angleDeg * Math.PI) / 180;
+    const rx = 44; // % radio horizontal
+    const ry = 40; // % radio vertical
+    const left = 50 + rx * Math.sin(rad);
+    const top = 48 - ry * Math.cos(rad);
+    return { left: `${left}%`, top: `${top}%` };
+  }
+
+  function renderSeats(state) {
+    const seatsEl = els.seats;
+    if (!seatsEl) return;
+    seatsEl.innerHTML = '';
+
+    const opponents = state.players
+      .map((p, i) => ({ player: p, index: i }))
+      .filter((x) => !x.player.isHuman);
+
+    opponents.forEach((entry, seatIndex) => {
+      const { player, index } = entry;
+      const pos = seatCoords(seatIndex, opponents.length);
+      const seat = document.createElement('div');
+      seat.className = 'seat' + (index === state.currentPlayerIndex ? ' is-active' : '');
+      seat.style.left = pos.left;
+      seat.style.top = pos.top;
+      seat.setAttribute(
+        'aria-label',
+        `${player.name}, ${player.hand.length} cartas${index === state.currentPlayerIndex ? ', turno actual' : ''}`,
+      );
+
+      const card = document.createElement('div');
+      card.className = 'seat__card';
+
+      const img = document.createElement('img');
+      img.className = 'seat__back';
+      img.alt = '';
+      img.decoding = 'async';
+      img.src = cardBackSrc();
+      img.addEventListener('error', () => {
+        const fb = document.createElement('div');
+        fb.className = 'seat__back seat__back--fallback';
+        fb.textContent = 'HUB';
+        img.replaceWith(fb);
+      });
+
+      const count = document.createElement('span');
+      count.className = 'seat__count';
+      count.textContent = String(player.hand.length);
+
+      card.appendChild(img);
+      card.appendChild(count);
+
+      const name = document.createElement('div');
+      name.className = 'seat__name';
+      name.textContent = player.name;
+
+      seat.appendChild(card);
+      seat.appendChild(name);
+      seatsEl.appendChild(seat);
     });
+
+    // Asiento humano (abajo, fijo)
+    const human = state.players.find((p) => p.isHuman);
+    if (human && els.humanSeat) {
+      els.humanSeat.classList.toggle('is-active', state.players[state.currentPlayerIndex]?.isHuman);
+      if (els.humanSeatName) els.humanSeatName.textContent = human.name;
+      if (els.humanSeatCount) els.humanSeatCount.textContent = String(human.hand.length);
+      if (els.humanSeatBack && !els.humanSeatBack.dataset.bound) {
+        els.humanSeatBack.src = cardBackSrc();
+        els.humanSeatBack.dataset.bound = '1';
+        els.humanSeatBack.addEventListener('error', () => {
+          els.humanSeatBack.classList.add('seat__back--fallback');
+        });
+      }
+    }
   }
 
   function renderPiles(state, ctx) {
