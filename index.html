@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="HUB-UNO — Juego de cartas original. Juega contra bots en el navegador." />
+  <meta name="theme-color" content="#1A3A36" />
+  <title>HUB-UNO</title>
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/cards.css" />
+  <link rel="stylesheet" href="./css/responsive.css" />
+</head>
+<body>
+  <div id="live-region" class="live-region" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Pantalla de inicio -->
+  <main id="screen-setup" class="screen is-active" aria-label="Configuración de partida">
+    <div class="setup-shell">
+      <header class="brand">
+        <img class="brand__logo" src="./assets/icons/logo.svg" alt="" width="72" height="72" />
+        <h1 class="brand__title">HUB-UNO</h1>
+        <p class="brand__tag">Descarte por color y número · Contra bots · 100% en el navegador</p>
+      </header>
+
+      <form id="setup-form" class="form-grid" novalidate>
+        <div class="field">
+          <label for="player-name">Tu nombre</label>
+          <input id="player-name" type="text" maxlength="16" autocomplete="nickname" required />
+        </div>
+
+        <div class="field">
+          <label for="player-count">Jugadores totales</label>
+          <div class="player-count">
+            <input id="player-count" type="range" min="2" max="10" step="1" value="4" />
+            <output id="player-count-out" for="player-count">4</output>
+          </div>
+          <p class="hint" id="player-count-hint">1 humano + 3 bots</p>
+        </div>
+
+        <div class="field">
+          <label>Nombres de los bots</label>
+          <div id="bot-names" class="bot-names"></div>
+        </div>
+
+        <div class="field">
+          <label for="difficulty">Dificultad</label>
+          <select id="difficulty">
+            <option value="easy">Fácil</option>
+            <option value="normal" selected>Normal</option>
+            <option value="hard">Difícil</option>
+          </select>
+        </div>
+
+        <div class="toggles" aria-label="Opciones">
+          <label class="toggle">
+            <input id="opt-stacking" type="checkbox" checked />
+            Apilado de robos (+2/+2, +4/+4)
+          </label>
+          <label class="toggle">
+            <input id="opt-sound" type="checkbox" />
+            Sonido
+          </label>
+          <label class="toggle">
+            <input id="opt-animations" type="checkbox" checked />
+            Animaciones
+          </label>
+          <label class="toggle">
+            <input id="opt-dark" type="checkbox" />
+            Modo oscuro
+          </label>
+        </div>
+
+        <div class="setup-actions">
+          <button type="button" id="btn-rules" class="btn-ghost">Cómo se juega</button>
+          <button type="submit" id="btn-play" class="btn-play btn-amber">Jugar</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Mesa de juego -->
+  <main id="screen-game" class="screen" aria-label="Mesa de HUB-UNO">
+    <header class="game-top">
+      <div class="game-top__brand">HUB-UNO</div>
+      <div class="game-top__actions">
+        <button type="button" id="btn-game-rules" class="btn-ghost" aria-label="Ver reglas">Reglas</button>
+        <button type="button" id="btn-menu" class="btn-ghost" aria-label="Abrir menú">Menú</button>
+      </div>
+    </header>
+
+    <div class="table">
+      <div id="bots-rail" class="bots-rail" aria-label="Rivales"></div>
+
+      <section class="center-stage" aria-label="Centro de mesa">
+        <div class="piles">
+          <div class="pile">
+            <div id="draw-pile"></div>
+            <span class="pile__label">Mazo</span>
+          </div>
+          <div class="pile">
+            <div id="discard-pile"></div>
+            <span class="pile__label">Descarte</span>
+          </div>
+        </div>
+
+        <div class="status-row">
+          <span id="badge-color" class="badge badge--color">—</span>
+          <span id="badge-direction" class="badge">Horario</span>
+          <span id="badge-penalty" class="badge badge--penalty" hidden>+0</span>
+          <span id="badge-turn" class="badge">Turno</span>
+        </div>
+
+        <div id="history-toast" class="history-toast" aria-hidden="true"></div>
+      </section>
+
+      <section id="human-area" class="human-area" aria-label="Tu zona">
+        <div id="drawn-offer" class="drawn-offer">
+          <span id="drawn-offer-text">Carta robada jugable</span>
+          <button type="button" id="btn-play-drawn" class="btn-amber">Jugarla</button>
+          <button type="button" id="btn-keep-drawn" class="btn-ghost">Conservar</button>
+        </div>
+        <div class="hand-wrap">
+          <div id="hand" class="hand"></div>
+        </div>
+        <div class="controls">
+          <button type="button" id="btn-draw" class="btn-primary">Robar</button>
+          <button type="button" id="btn-sort">Ordenar mano</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal genérico -->
+  <div id="modal-root" class="modal-root" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <h2 id="modal-title">Modal</h2>
+      <div id="modal-body"></div>
+      <div id="modal-actions" class="modal-actions"></div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
