@@ -90,31 +90,40 @@
     </header>
 
     <div class="table">
-      <div id="bots-rail" class="bots-rail" aria-label="Rivales"></div>
+      <div class="round-table" aria-label="Mesa redonda">
+        <div id="seats" class="seats" aria-label="Jugadores"></div>
 
-      <section class="center-stage" aria-label="Centro de mesa">
-        <div class="piles">
-          <div class="pile">
-            <div id="draw-pile"></div>
-            <span class="pile__label">Mazo</span>
+        <section class="center-stage" aria-label="Centro de mesa">
+          <div class="piles">
+            <div class="pile">
+              <div id="draw-pile"></div>
+              <span class="pile__label">Mazo</span>
+            </div>
+            <div class="pile">
+              <div id="discard-pile"></div>
+              <span class="pile__label">Descarte</span>
+            </div>
           </div>
-          <div class="pile">
-            <div id="discard-pile"></div>
-            <span class="pile__label">Descarte</span>
+
+          <div class="status-row">
+            <span id="badge-color" class="badge badge--color">—</span>
+            <span id="badge-direction" class="badge">Horario</span>
+            <span id="badge-penalty" class="badge badge--penalty" hidden>+0</span>
+            <span id="badge-turn" class="badge">Turno</span>
           </div>
-        </div>
 
-        <div class="status-row">
-          <span id="badge-color" class="badge badge--color">—</span>
-          <span id="badge-direction" class="badge">Horario</span>
-          <span id="badge-penalty" class="badge badge--penalty" hidden>+0</span>
-          <span id="badge-turn" class="badge">Turno</span>
-        </div>
-
-        <div id="history-toast" class="history-toast" aria-hidden="true"></div>
-      </section>
+          <div id="history-toast" class="history-toast" aria-hidden="true"></div>
+        </section>
+      </div>
 
       <section id="human-area" class="human-area" aria-label="Tu zona">
+        <div id="human-seat" class="seat seat--human" aria-live="polite">
+          <div class="seat__card">
+            <img class="seat__back" id="human-seat-back" alt="" />
+            <span class="seat__count" id="human-seat-count">0</span>
+          </div>
+          <div class="seat__name" id="human-seat-name">Tú</div>
+        </div>
         <div id="drawn-offer" class="drawn-offer">
           <span id="drawn-offer-text">Carta robada jugable</span>
           <button type="button" id="btn-play-drawn" class="btn-amber">Jugarla</button>
