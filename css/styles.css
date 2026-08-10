@@ -21,8 +21,8 @@
   --radius: 16px;
   --font-display: 'Outfit', 'Sora', sans-serif;
   --font-body: 'Sora', 'Outfit', sans-serif;
-  --card-w: clamp(52px, 10vw, 86px);
-  --card-h: clamp(78px, 15vw, 130px);
+  --card-w: clamp(64px, 12vw, 110px);
+  --card-h: clamp(90px, 16.8vw, 154px);
   --focus: 0 0 0 3px rgba(47, 111, 237, 0.55);
 }
 

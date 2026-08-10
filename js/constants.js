@@ -29,6 +29,9 @@ export const CARD_IMAGE_EXT = 'png';
 /** Prefijo relativo de imágenes de cartas (GitHub Pages). */
 export const CARD_IMAGE_BASE = './assets/cards/';
 
+/** Query de versión para evitar caché del navegador al actualizar arte. */
+export const CARD_IMAGE_VERSION = '20260810b';
+
 /**
  * Devuelve la ruta relativa de la imagen de una carta.
  * @param {{ type: string, color?: string|null, value?: number|null }} card
@@ -37,28 +40,39 @@ export const CARD_IMAGE_BASE = './assets/cards/';
 export function cardImageSrc(card) {
   const ext = CARD_IMAGE_EXT;
   const base = CARD_IMAGE_BASE;
-  if (!card) return `${base}back.${ext}`;
-  switch (card.type) {
-    case 'number':
-      return `${base}${card.color}-${card.value}.${ext}`;
-    case 'reverse':
-      return `${base}${card.color}-reverse.${ext}`;
-    case 'skip':
-      return `${base}${card.color}-skip.${ext}`;
-    case 'draw2':
-      return `${base}${card.color}-draw2.${ext}`;
-    case 'wild':
-      return `${base}wild.${ext}`;
-    case 'wild_draw4':
-      return `${base}wild-draw4.${ext}`;
-    default:
-      return `${base}back.${ext}`;
+  const v = CARD_IMAGE_VERSION;
+  let path;
+  if (!card) path = `${base}back.${ext}`;
+  else {
+    switch (card.type) {
+      case 'number':
+        path = `${base}${card.color}-${card.value}.${ext}`;
+        break;
+      case 'reverse':
+        path = `${base}${card.color}-reverse.${ext}`;
+        break;
+      case 'skip':
+        path = `${base}${card.color}-skip.${ext}`;
+        break;
+      case 'draw2':
+        path = `${base}${card.color}-draw2.${ext}`;
+        break;
+      case 'wild':
+        path = `${base}wild.${ext}`;
+        break;
+      case 'wild_draw4':
+        path = `${base}wild-draw4.${ext}`;
+        break;
+      default:
+        path = `${base}back.${ext}`;
+    }
   }
+  return `${path}?v=${v}`;
 }
 
 /** Ruta del reverso de carta. */
 export function cardBackSrc() {
-  return `${CARD_IMAGE_BASE}back.${CARD_IMAGE_EXT}`;
+  return `${CARD_IMAGE_BASE}back.${CARD_IMAGE_EXT}?v=${CARD_IMAGE_VERSION}`;
 }
 
 /** Composición parametrizada del mazo (108 cartas). */
