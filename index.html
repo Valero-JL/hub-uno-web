@@ -3,22 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="HUB-UNO — Juego de cartas original. Juega contra bots en el navegador." />
-  <meta name="theme-color" content="#1A3A36" />
-  <title>HUB-UNO</title>
+  <meta name="description" content="HUB-UNO by GTAHUB — Juego de cartas. Juega contra bots en el navegador." />
+  <meta name="theme-color" content="#101010" />
+  <title>HUB-UNO · GTAHUB</title>
   <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./css/styles.css" />
   <link rel="stylesheet" href="./css/cards.css" />
   <link rel="stylesheet" href="./css/responsive.css" />
 </head>
-<body>
+<body class="theme-brand">
   <div id="live-region" class="live-region" aria-live="polite" aria-atomic="true"></div>
 
   <!-- Pantalla de inicio -->
   <main id="screen-setup" class="screen is-active" aria-label="Configuración de partida">
     <div class="setup-shell">
       <header class="brand">
-        <img class="brand__logo" src="./assets/icons/logo.svg" alt="" width="72" height="72" />
+        <img class="brand__logo" src="./assets/icons/gtahub-logo.png" alt="GTAHUB" width="280" height="100" />
+        <p class="brand__eyebrow">Presenta</p>
         <h1 class="brand__title">HUB-UNO</h1>
         <p class="brand__tag">Descarte por color y número · Contra bots · 100% en el navegador</p>
       </header>
@@ -82,7 +86,10 @@
   <!-- Mesa de juego -->
   <main id="screen-game" class="screen" aria-label="Mesa de HUB-UNO">
     <header class="game-top">
-      <div class="game-top__brand">HUB-UNO</div>
+      <div class="game-top__brand">
+        <img class="game-top__logo" src="./assets/icons/gtahub-logo.png" alt="GTAHUB" />
+        <span class="game-top__product">HUB-UNO</span>
+      </div>
       <div class="game-top__actions">
         <button type="button" id="btn-game-rules" class="btn-ghost" aria-label="Ver reglas">Reglas</button>
         <button type="button" id="btn-menu" class="btn-ghost" aria-label="Abrir menú">Menú</button>
